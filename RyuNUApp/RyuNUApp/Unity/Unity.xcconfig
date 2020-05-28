@@ -1,0 +1,31 @@
+#include "Exports.xcconfig"
+
+UNITY_SCRIPTING_BACKEND = il2cpp;
+GCC_PREFIX_HEADER = $(PRODUCT_NAME)/Unity/Classes/Prefix.pch;
+
+HEADER_SEARCH_PATHS = $(inherited) "$(PRODUCT_NAME)/Unity/Classes" "$(PRODUCT_NAME)/Unity/Classes/Unity" "$(PRODUCT_NAME)/Unity/Classes/Native" "$(PRODUCT_NAME)/Unity/Libraries" "$(PRODUCT_NAME)/Unity/Libraries/libil2cpp/include" ${PODS_HEADER_PATHS};
+
+LIBRARY_SEARCH_PATHS = $(inherited) "$(PRODUCT_NAME)/Unity/Libraries" "$(PRODUCT_NAME)/Unity/Libraries/libil2cpp/include" "$(PRODUCT_NAME)/Unity/Libraries/Plugins/iOS" ${PODS_LIBRARY_PATHS};
+
+// If using .net 4.0 in Unity, append -DNET_4_0 to OTHER_CFLAGS
+OTHER_CFLAGS = $(inherited) -DINIT_SCRIPTING_BACKEND=1 -fno-strict-overflow -DRUNTIME_IL2CPP=1 -DNET_4_0;
+
+OTHER_LDFLAGS = $(inherited) -weak-lSystem -weak_framework CoreMotion -weak_framework GameKit -weak_framework iAd -framework AVFoundation -framework AVKit -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework CoreLocation -framework CoreMedia -framework CoreVideo -framework Foundation -framework MediaPlayer -framework MediaToolbox -framework Metal -framework OpenAL -framework OpenGLES -framework QuartzCore -framework SystemConfiguration -framework UIKit -liconv.2 -liPhone-lib -lil2cpp ${PODS_LIBRARIES};
+
+SWIFT_OBJC_BRIDGING_HEADER = $(PRODUCT_NAME)/Unity/Bridging-Header.h;
+SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+
+// COCOA PODS SPECIFIC
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ChainUtils" "${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit" "${PODS_CONFIGURATION_BUILD_DIR}/NetworkUtils" "${PODS_CONFIGURATION_BUILD_DIR}/PhoneNumberKit" "${PODS_CONFIGURATION_BUILD_DIR}/Stripe" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftPromises" "${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios" "${PODS_ROOT}/ChainUtils" "${PODS_ROOT}/GA-SDK-IOS" "${PODS_ROOT}/Ryu"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) FBSDKCOCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ChainUtils/ChainUtils.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/NetworkUtils/NetworkUtils.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PhoneNumberKit/PhoneNumberKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftPromises/SwiftPromises.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/Lottie.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Stripe/InternalFrameworks"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"stdc++" -l"z" -framework "AdSupport" -framework "ChainUtils" -framework "Contacts" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreTelephony" -framework "FBSDKCoreKit" -framework "Foundation" -framework "GameAnalytics" -framework "Lottie" -framework "NetworkUtils" -framework "PassKit" -framework "PhoneNumberKit" -framework "QuartzCore" -framework "Ryu" -framework "Security" -framework "Stripe" -framework "SwiftPromises" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -weak_framework "Accelerate" -weak_framework "Accounts" -weak_framework "AudioToolbox" -weak_framework "CoreGraphics" -weak_framework "CoreLocation" -weak_framework "Foundation" -weak_framework "QuartzCore" -weak_framework "Security" -weak_framework "Social" -weak_framework "UIKit"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES
